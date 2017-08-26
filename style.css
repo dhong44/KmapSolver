@@ -1,0 +1,62 @@
+/* body colour */
+
+html, body {
+  background-color: #eceff1;
+}
+
+/* spacing */
+
+.columns {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* typography */
+
+html, body {
+  font-size: 125%;
+}
+
+/* table formatting */
+
+table {
+  border-collapse: collapse;
+}
+
+table td,
+table th {
+  padding: 0.25rem 0.25rem 0.25rem;
+}
+
+.truth-table table td,
+.truth-table table th {
+  text-align: center;
+  border: 0 solid #ccc;
+  border-bottom-width: 1px;
+}
+
+.truth-table table tr:last-child td,
+.table table tr:last-child th {
+  border-bottom-width: 0;
+}
+
+.kmap table td,
+.kmap table th {
+  border-width: 1px;
+  vertical-align: middle;
+}
+
+.kmap table td.empty {
+  border-width: 0;
+}
+
+/* output colouring */
+
+.true {
+  background-color: #c8e6c9;
+}
+
+.false {
+  background-color: #ffcdd2;
+}
+
