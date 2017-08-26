@@ -1,4 +1,5 @@
 import BooleanLogic from './views/BooleanLogic';
+import './style.css';
 import m from 'mithril';
 
 m.route(document.body, "/truth-table/4", {

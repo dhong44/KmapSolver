@@ -1,16 +1,33 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
+  devServer: {
+    contentBase: './dist'
+  },
   output: {
-    path: path.resolve(__dirname, './bin'),
-    filename: 'app.js'
+    path: path.resolve(__dirname, './dist'),
+    filename: 'bundle.js'
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel-loader'
-    }]
-  }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Logistic'
+    })
+  ]
 };
