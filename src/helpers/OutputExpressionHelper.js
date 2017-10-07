@@ -31,6 +31,43 @@ let numCodeToVars = function(code){
   return newCode;
 };
 
+class Output {
+  constructor(code, map){
+    this.code = code;
+    this.map = map;
+    this.expandedCodes = [];
+    this.expandCode("", code);
+    this.addToMap()
+  }
+
+  expandCode(code, remaining){
+    let index = remaining.indexOf("_");
+
+    if (index >= 0){
+      this.expandCode(code + remaining.substring(0, index) + "0",
+        remaining.substring(index + 1, remaining.length));
+
+      this.expandCode(code + remaining.substring(0, index) + "1",
+        remaining.substring(index + 1, remaining.length));
+
+    } else {
+      this.expandedCodes.push(code + remaining);
+    }
+  }
+
+  addToMap(){
+    this.expandedCodes.forEach(code => {
+      this.map.set(code, this.map.has(code));
+      })
+  }
+
+  duplicateEh(){
+    return this.expandedCodes.every(code => {
+      return this.map.get(code)
+    })
+  }
+}
+
 let calculateExpression = function(logicFns){
   let inputs = logicFns.filter(logicFn => logicFn.output === "1").map((logicFn) =>
     logicFn.input
@@ -69,8 +106,13 @@ let calculateExpression = function(logicFns){
       reduceableOutputs.forEach(output => {outputExpressions.add(output)});
       reduceableOutputs = nextOutputs;
     }
-    let outputs = Array.from(outputExpressions);
-    return outputs.map(output => numCodeToVars(output)).join(" + ");
+
+    let codeMap = new Map();
+    let outputs = Array.from(outputExpressions).map(expression => new Output(expression, codeMap));
+
+    return outputs.filter(output => !output.duplicateEh())
+      .map(output => numCodeToVars(output.code))
+      .join(" + ");
   }
 };
 
