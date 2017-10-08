@@ -57,14 +57,33 @@ class Output {
 
   addToMap(){
     this.expandedCodes.forEach(code => {
-      this.map.set(code, this.map.has(code));
-      })
+      if (this.map.has(code)) {
+        this.map.set(code, 1 + this.map.get(code))
+      } else {
+        this.map.set(code, 1)
+      }
+    });
+  }
+
+  removeFromMap(){
+    this.expandedCodes.forEach(code => {
+      if (this.map.get(code) === 1){
+        this.map.remove(code)
+      } else {
+        this.map.set(code, this.map.get(code) - 1)
+      }
+    });
   }
 
   duplicateEh(){
-    return this.expandedCodes.every(code => {
-      return this.map.get(code)
-    })
+    let duplicate = this.expandedCodes.every(code => {
+      return this.map.get(code) > 1
+    });
+
+    if (duplicate){
+      this.removeFromMap();
+    }
+    return duplicate;
   }
 }
 
