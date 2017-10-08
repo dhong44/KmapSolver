@@ -1,19 +1,14 @@
-import BooleanLogic from './views/BooleanLogic';
-import {twoVar, threeVar, fourVar, fiveVar, sixVar, sevenVar, eightVar} from './views/variables';
+import Variables from './views/variables';
 import './style.css';
 import 'bootstrap-css';
 import m from 'mithril';
 
-console.log(twoVar);
-
-m.route.prefix("");
-
-m.route(document.body, "/kmap/4", {
-  "/kmap/2": twoVar,
-  "/kmap/3": threeVar,
-  "/kmap/4": fourVar,
-  "/kmap/5": fiveVar,
-  "/kmap/6": sixVar,
-  "/kmap/7": sevenVar,
-  "/kmap/8": eightVar
+m.route(document.body, "/KmapSolver/4", {
+  "/KmapSolver/2": Variables(2),
+  "/KmapSolver/3": Variables(3),
+  "/KmapSolver/4": Variables(4),
+  "/KmapSolver/5": Variables(5),
+  "/KmapSolver/6": Variables(6),
+  "/KmapSolver/7": Variables(7),
+  "/KmapSolver/8": Variables(8)
 });
