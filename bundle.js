@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1750,7 +1750,7 @@ m.vnode = Vnode
 if (true) module["exports"] = m
 else window.m = m
 }());
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9).setImmediate, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9).setImmediate, __webpack_require__(4)))
 
 /***/ }),
 /* 3 */
@@ -1779,53 +1779,6 @@ exports.letterSequence = letterSequence;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _mithril = __webpack_require__(2);
-
-var _mithril2 = _interopRequireDefault(_mithril);
-
-var _LogicFnsHelper = __webpack_require__(12);
-
-var _LogicFnsHelper2 = _interopRequireDefault(_LogicFnsHelper);
-
-var _TruthTable = __webpack_require__(13);
-
-var _TruthTable2 = _interopRequireDefault(_TruthTable);
-
-var _KMap = __webpack_require__(16);
-
-var _KMap2 = _interopRequireDefault(_KMap);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var BooleanLogic = {
-  oninit: function oninit(vnode) {
-    this.logicFns = (0, _LogicFnsHelper2.default)(vnode.attrs.inputs);
-    this.kmapRows = Math.floor(vnode.attrs.inputs / 2);
-    this.kmapCols = Math.ceil(vnode.attrs.inputs / 2);
-  },
-  view: function view() {
-    return (0, _mithril2.default)(
-      'div',
-      { 'class': 'row' },
-      (0, _mithril2.default)(_TruthTable2.default, { logicFns: this.logicFns }),
-      (0, _mithril2.default)(_KMap2.default, { colVars: this.kmapCols, rowVars: this.kmapRows, logicFns: this.logicFns })
-    );
-  }
-};
-
-exports.default = BooleanLogic;
-
-/***/ }),
-/* 5 */
 /***/ (function(module, exports) {
 
 var g;
@@ -1852,7 +1805,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1877,7 +1830,7 @@ var grayCode = function grayCode(variables) {
 exports.default = grayCode;
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1906,17 +1859,15 @@ exports.changeOutput = changeOutput;
 exports.outputClass = outputClass;
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _BooleanLogic = __webpack_require__(4);
+var _variables = __webpack_require__(8);
 
-var _BooleanLogic2 = _interopRequireDefault(_BooleanLogic);
-
-var _variables = __webpack_require__(20);
+var _variables2 = _interopRequireDefault(_variables);
 
 __webpack_require__(22);
 
@@ -1928,19 +1879,55 @@ var _mithril2 = _interopRequireDefault(_mithril);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-console.log(_variables.twoVar);
-
-_mithril2.default.route.prefix("");
-
-_mithril2.default.route(document.body, "/kmap/4", {
-  "/kmap/2": _variables.twoVar,
-  "/kmap/3": _variables.threeVar,
-  "/kmap/4": _variables.fourVar,
-  "/kmap/5": _variables.fiveVar,
-  "/kmap/6": _variables.sixVar,
-  "/kmap/7": _variables.sevenVar,
-  "/kmap/8": _variables.eightVar
+_mithril2.default.route(document.body, "/KmapSolver/4", {
+  "/KmapSolver/2": (0, _variables2.default)(2),
+  "/KmapSolver/3": (0, _variables2.default)(3),
+  "/KmapSolver/4": (0, _variables2.default)(4),
+  "/KmapSolver/5": (0, _variables2.default)(5),
+  "/KmapSolver/6": (0, _variables2.default)(6),
+  "/KmapSolver/7": (0, _variables2.default)(7),
+  "/KmapSolver/8": (0, _variables2.default)(8)
 });
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _mithril = __webpack_require__(2);
+
+var _mithril2 = _interopRequireDefault(_mithril);
+
+var _BooleanLogic = __webpack_require__(12);
+
+var _BooleanLogic2 = _interopRequireDefault(_BooleanLogic);
+
+var _Navbar = __webpack_require__(21);
+
+var _Navbar2 = _interopRequireDefault(_Navbar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Variables = function Variables(n) {
+  return {
+    view: function view() {
+      return (0, _mithril2.default)(
+        'div',
+        { 'class': 'container' },
+        (0, _mithril2.default)(_Navbar2.default, null),
+        (0, _mithril2.default)(_BooleanLogic2.default, { inputs: n })
+      );
+    }
+  };
+};
+
+exports.default = Variables;
 
 /***/ }),
 /* 9 */
@@ -2192,7 +2179,7 @@ exports.clearImmediate = clearImmediate;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(11)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(11)))
 
 /***/ }),
 /* 11 */
@@ -2395,7 +2382,54 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _GrayCodeHelper = __webpack_require__(6);
+var _mithril = __webpack_require__(2);
+
+var _mithril2 = _interopRequireDefault(_mithril);
+
+var _LogicFnsHelper = __webpack_require__(13);
+
+var _LogicFnsHelper2 = _interopRequireDefault(_LogicFnsHelper);
+
+var _TruthTable = __webpack_require__(14);
+
+var _TruthTable2 = _interopRequireDefault(_TruthTable);
+
+var _KMap = __webpack_require__(17);
+
+var _KMap2 = _interopRequireDefault(_KMap);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var BooleanLogic = {
+  oninit: function oninit(vnode) {
+    this.logicFns = (0, _LogicFnsHelper2.default)(vnode.attrs.inputs);
+    this.kmapRows = Math.floor(vnode.attrs.inputs / 2);
+    this.kmapCols = Math.ceil(vnode.attrs.inputs / 2);
+  },
+  view: function view() {
+    return (0, _mithril2.default)(
+      'div',
+      { 'class': 'row' },
+      (0, _mithril2.default)(_TruthTable2.default, { logicFns: this.logicFns }),
+      (0, _mithril2.default)(_KMap2.default, { colVars: this.kmapCols, rowVars: this.kmapRows, logicFns: this.logicFns })
+    );
+  }
+};
+
+exports.default = BooleanLogic;
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _GrayCodeHelper = __webpack_require__(5);
 
 var _GrayCodeHelper2 = _interopRequireDefault(_GrayCodeHelper);
 
@@ -2422,7 +2456,7 @@ var createLogicFns = function createLogicFns(variables) {
 exports.default = createLogicFns;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2436,11 +2470,11 @@ var _mithril = __webpack_require__(2);
 
 var _mithril2 = _interopRequireDefault(_mithril);
 
-var _TruthTableHead = __webpack_require__(14);
+var _TruthTableHead = __webpack_require__(15);
 
 var _TruthTableHead2 = _interopRequireDefault(_TruthTableHead);
 
-var _TruthTableRow = __webpack_require__(15);
+var _TruthTableRow = __webpack_require__(16);
 
 var _TruthTableRow2 = _interopRequireDefault(_TruthTableRow);
 
@@ -2466,7 +2500,7 @@ var TruthTable = {
 exports.default = TruthTable;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2507,7 +2541,7 @@ var TruthTableHead = {
 exports.default = TruthTableHead;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2517,7 +2551,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _ChangeOutputHelper = __webpack_require__(7);
+var _ChangeOutputHelper = __webpack_require__(6);
 
 var _mithril = __webpack_require__(2);
 
@@ -2552,7 +2586,7 @@ var TruthTableRow = {
 exports.default = TruthTableRow;
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2566,15 +2600,15 @@ var _mithril = __webpack_require__(2);
 
 var _mithril2 = _interopRequireDefault(_mithril);
 
-var _KMapTable = __webpack_require__(17);
+var _KMapTable = __webpack_require__(18);
 
 var _KMapTable2 = _interopRequireDefault(_KMapTable);
 
-var _BooleanExpression = __webpack_require__(18);
+var _BooleanExpression = __webpack_require__(19);
 
 var _BooleanExpression2 = _interopRequireDefault(_BooleanExpression);
 
-var _GrayCodeHelper = __webpack_require__(6);
+var _GrayCodeHelper = __webpack_require__(5);
 
 var _GrayCodeHelper2 = _interopRequireDefault(_GrayCodeHelper);
 
@@ -2624,7 +2658,7 @@ var KMap = {
 exports.default = KMap;
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2634,7 +2668,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _ChangeOutputHelper = __webpack_require__(7);
+var _ChangeOutputHelper = __webpack_require__(6);
 
 var _LetterSequenceHelper = __webpack_require__(3);
 
@@ -2711,7 +2745,7 @@ var KMapTable = {
 exports.default = KMapTable;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2725,7 +2759,7 @@ var _mithril = __webpack_require__(2);
 
 var _mithril2 = _interopRequireDefault(_mithril);
 
-var _OutputExpressionHelper = __webpack_require__(19);
+var _OutputExpressionHelper = __webpack_require__(20);
 
 var _OutputExpressionHelper2 = _interopRequireDefault(_OutputExpressionHelper);
 
@@ -2743,7 +2777,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2822,17 +2856,39 @@ var Output = function () {
       var _this = this;
 
       this.expandedCodes.forEach(function (code) {
-        _this.map.set(code, _this.map.has(code));
+        if (_this.map.has(code)) {
+          _this.map.set(code, 1 + _this.map.get(code));
+        } else {
+          _this.map.set(code, 1);
+        }
+      });
+    }
+  }, {
+    key: "removeFromMap",
+    value: function removeFromMap() {
+      var _this2 = this;
+
+      this.expandedCodes.forEach(function (code) {
+        if (_this2.map.get(code) === 1) {
+          _this2.map.remove(code);
+        } else {
+          _this2.map.set(code, _this2.map.get(code) - 1);
+        }
       });
     }
   }, {
     key: "duplicateEh",
     value: function duplicateEh() {
-      var _this2 = this;
+      var _this3 = this;
 
-      return this.expandedCodes.every(function (code) {
-        return _this2.map.get(code);
+      var duplicate = this.expandedCodes.every(function (code) {
+        return _this3.map.get(code) > 1;
       });
+
+      if (duplicate) {
+        this.removeFromMap();
+      }
+      return duplicate;
     }
   }]);
 
@@ -2946,117 +3002,6 @@ var calculateExpression = function calculateExpression(logicFns) {
 exports.default = calculateExpression;
 
 /***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.eightVar = exports.sevenVar = exports.sixVar = exports.fiveVar = exports.fourVar = exports.threeVar = exports.twoVar = undefined;
-
-var _mithril = __webpack_require__(2);
-
-var _mithril2 = _interopRequireDefault(_mithril);
-
-var _BooleanLogic = __webpack_require__(4);
-
-var _BooleanLogic2 = _interopRequireDefault(_BooleanLogic);
-
-var _Navbar = __webpack_require__(21);
-
-var _Navbar2 = _interopRequireDefault(_Navbar);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var twoVar = {
-  view: function view() {
-    return (0, _mithril2.default)(
-      'div',
-      { 'class': 'container' },
-      (0, _mithril2.default)(_Navbar2.default, null),
-      (0, _mithril2.default)(_BooleanLogic2.default, { inputs: 2 })
-    );
-  }
-};
-
-var threeVar = {
-  view: function view() {
-    return (0, _mithril2.default)(
-      'div',
-      { 'class': 'container' },
-      (0, _mithril2.default)(_Navbar2.default, null),
-      (0, _mithril2.default)(_BooleanLogic2.default, { inputs: 3 })
-    );
-  }
-};
-
-var fourVar = {
-  view: function view() {
-    return (0, _mithril2.default)(
-      'div',
-      { 'class': 'container' },
-      (0, _mithril2.default)(_Navbar2.default, null),
-      (0, _mithril2.default)(_BooleanLogic2.default, { inputs: 4 })
-    );
-  }
-};
-
-var fiveVar = {
-  view: function view() {
-    return (0, _mithril2.default)(
-      'div',
-      { 'class': 'container' },
-      (0, _mithril2.default)(_Navbar2.default, null),
-      (0, _mithril2.default)(_BooleanLogic2.default, { inputs: 5 })
-    );
-  }
-};
-
-var sixVar = {
-  view: function view() {
-    return (0, _mithril2.default)(
-      'div',
-      { 'class': 'container' },
-      (0, _mithril2.default)(_Navbar2.default, null),
-      (0, _mithril2.default)(_BooleanLogic2.default, { inputs: 6 })
-    );
-  }
-};
-
-var sevenVar = {
-  view: function view() {
-    return (0, _mithril2.default)(
-      'div',
-      { 'class': 'container' },
-      (0, _mithril2.default)(_Navbar2.default, null),
-      (0, _mithril2.default)(_BooleanLogic2.default, { inputs: 7 })
-    );
-  }
-};
-
-var eightVar = {
-  view: function view() {
-    return (0, _mithril2.default)(
-      'div',
-      { 'class': 'container' },
-      (0, _mithril2.default)(_Navbar2.default, null),
-      (0, _mithril2.default)(_BooleanLogic2.default, { inputs: 8 })
-    );
-  }
-};
-
-exports.twoVar = twoVar;
-exports.threeVar = threeVar;
-exports.fourVar = fourVar;
-exports.fiveVar = fiveVar;
-exports.sixVar = sixVar;
-exports.sevenVar = sevenVar;
-exports.eightVar = eightVar;
-
-/***/ }),
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3086,7 +3031,7 @@ var Navbar = {
           { "class": "nav-item" },
           (0, _mithril2.default)(
             "a",
-            { href: "/kmap/2", oncreate: _mithril2.default.route.link, "class": "nav-link" },
+            { href: "/KmapSolver/2", oncreate: _mithril2.default.route.link, "class": "nav-link" },
             " 2 variables"
           )
         ),
@@ -3095,7 +3040,7 @@ var Navbar = {
           { "class": "nav-item" },
           (0, _mithril2.default)(
             "a",
-            { href: "/kmap/3", oncreate: _mithril2.default.route.link, "class": "nav-link" },
+            { href: "/KmapSolver/3", oncreate: _mithril2.default.route.link, "class": "nav-link" },
             " 3 variables"
           )
         ),
@@ -3104,7 +3049,7 @@ var Navbar = {
           { "class": "nav-item" },
           (0, _mithril2.default)(
             "a",
-            { href: "/kmap/4", oncreate: _mithril2.default.route.link, "class": "nav-link" },
+            { href: "/KmapSolver/4", oncreate: _mithril2.default.route.link, "class": "nav-link" },
             " 4 variables"
           )
         ),
@@ -3113,7 +3058,7 @@ var Navbar = {
           { "class": "nav-item" },
           (0, _mithril2.default)(
             "a",
-            { href: "/kmap/5", oncreate: _mithril2.default.route.link, "class": "nav-link" },
+            { href: "/KmapSolver/5", oncreate: _mithril2.default.route.link, "class": "nav-link" },
             " 5 variables"
           )
         ),
@@ -3122,7 +3067,7 @@ var Navbar = {
           { "class": "nav-item" },
           (0, _mithril2.default)(
             "a",
-            { href: "/kmap/6", oncreate: _mithril2.default.route.link, "class": "nav-link" },
+            { href: "/KmapSolver/6", oncreate: _mithril2.default.route.link, "class": "nav-link" },
             " 6 variables"
           )
         ),
@@ -3131,7 +3076,7 @@ var Navbar = {
           { "class": "nav-item" },
           (0, _mithril2.default)(
             "a",
-            { href: "/kmap/7", oncreate: _mithril2.default.route.link, "class": "nav-link" },
+            { href: "/KmapSolver/7", oncreate: _mithril2.default.route.link, "class": "nav-link" },
             " 7 variables"
           )
         ),
@@ -3140,7 +3085,7 @@ var Navbar = {
           { "class": "nav-item" },
           (0, _mithril2.default)(
             "a",
-            { href: "/kmap/8", oncreate: _mithril2.default.route.link, "class": "nav-link" },
+            { href: "/KmapSolver/8", oncreate: _mithril2.default.route.link, "class": "nav-link" },
             " 8 variables"
           )
         )
