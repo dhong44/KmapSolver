@@ -1879,14 +1879,14 @@ var _mithril2 = _interopRequireDefault(_mithril);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_mithril2.default.route(document.body, "/KmapSolver/4", {
-  "/KmapSolver/2": (0, _variables2.default)(2),
-  "/KmapSolver/3": (0, _variables2.default)(3),
-  "/KmapSolver/4": (0, _variables2.default)(4),
-  "/KmapSolver/5": (0, _variables2.default)(5),
-  "/KmapSolver/6": (0, _variables2.default)(6),
-  "/KmapSolver/7": (0, _variables2.default)(7),
-  "/KmapSolver/8": (0, _variables2.default)(8)
+_mithril2.default.route(document.body, "/4", {
+  "/2": (0, _variables2.default)(2),
+  "/3": (0, _variables2.default)(3),
+  "/4": (0, _variables2.default)(4),
+  "/5": (0, _variables2.default)(5),
+  "/6": (0, _variables2.default)(6),
+  "/7": (0, _variables2.default)(7),
+  "/8": (0, _variables2.default)(8)
 });
 
 /***/ }),
@@ -3031,7 +3031,7 @@ var Navbar = {
           { "class": "nav-item" },
           (0, _mithril2.default)(
             "a",
-            { href: "/KmapSolver/2", oncreate: _mithril2.default.route.link, "class": "nav-link" },
+            { href: "/2", oncreate: _mithril2.default.route.link, "class": "nav-link" },
             " 2 variables"
           )
         ),
@@ -3040,7 +3040,7 @@ var Navbar = {
           { "class": "nav-item" },
           (0, _mithril2.default)(
             "a",
-            { href: "/KmapSolver/3", oncreate: _mithril2.default.route.link, "class": "nav-link" },
+            { href: "/3", oncreate: _mithril2.default.route.link, "class": "nav-link" },
             " 3 variables"
           )
         ),
@@ -3049,7 +3049,7 @@ var Navbar = {
           { "class": "nav-item" },
           (0, _mithril2.default)(
             "a",
-            { href: "/KmapSolver/4", oncreate: _mithril2.default.route.link, "class": "nav-link" },
+            { href: "/4", oncreate: _mithril2.default.route.link, "class": "nav-link" },
             " 4 variables"
           )
         ),
@@ -3058,7 +3058,7 @@ var Navbar = {
           { "class": "nav-item" },
           (0, _mithril2.default)(
             "a",
-            { href: "/KmapSolver/5", oncreate: _mithril2.default.route.link, "class": "nav-link" },
+            { href: "/5", oncreate: _mithril2.default.route.link, "class": "nav-link" },
             " 5 variables"
           )
         ),
@@ -3067,7 +3067,7 @@ var Navbar = {
           { "class": "nav-item" },
           (0, _mithril2.default)(
             "a",
-            { href: "/KmapSolver/6", oncreate: _mithril2.default.route.link, "class": "nav-link" },
+            { href: "/6", oncreate: _mithril2.default.route.link, "class": "nav-link" },
             " 6 variables"
           )
         ),
@@ -3076,7 +3076,7 @@ var Navbar = {
           { "class": "nav-item" },
           (0, _mithril2.default)(
             "a",
-            { href: "/KmapSolver/7", oncreate: _mithril2.default.route.link, "class": "nav-link" },
+            { href: "/7", oncreate: _mithril2.default.route.link, "class": "nav-link" },
             " 7 variables"
           )
         ),
@@ -3085,7 +3085,7 @@ var Navbar = {
           { "class": "nav-item" },
           (0, _mithril2.default)(
             "a",
-            { href: "/KmapSolver/8", oncreate: _mithril2.default.route.link, "class": "nav-link" },
+            { href: "/8", oncreate: _mithril2.default.route.link, "class": "nav-link" },
             " 8 variables"
           )
         )
