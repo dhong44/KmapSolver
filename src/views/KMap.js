@@ -17,7 +17,7 @@ let KMap = {
     }
   },
   view(vnode){
-    return <div class="kmap">
+    return <div class="kmap col">
       <KMapTable grid={this.grid}
                  colHeads={this.colHeads}
                  rowHeads={this.rowHeads}

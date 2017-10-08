@@ -11,9 +11,9 @@ let BooleanLogic = {
   },
 
   view(){
-    return <div class="columns">
-      <TruthTable logicFns={this.logicFns}/>
-      <KMap colVars={this.kmapCols} rowVars={this.kmapRows} logicFns={this.logicFns}/>
+    return <div class="row">
+        <TruthTable logicFns={this.logicFns}/>
+        <KMap colVars={this.kmapCols} rowVars={this.kmapRows} logicFns={this.logicFns}/>
     </div>
   }
 };

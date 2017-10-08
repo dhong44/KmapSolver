@@ -9,7 +9,7 @@ let KMapTable = {
   },
 
   view(vnode){
-    return <table>
+    return <table class="table">
       <tr>
         <td class="empty" rowSpan={2} colSpan={2}/>
         <th colSpan={this.grid[0].logicFns.length}>

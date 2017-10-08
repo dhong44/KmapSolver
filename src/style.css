@@ -1,20 +1,8 @@
-/* body colour */
-
-html, body {
-  background-color: #eceff1;
-}
-
 /* spacing */
 
 .columns {
   display: flex;
   justify-content: space-around;
-}
-
-/* typography */
-
-html, body {
-  font-size: 125%;
 }
 
 /* table formatting */
@@ -42,8 +30,9 @@ table th {
 
 .kmap table td,
 .kmap table th {
-  border-width: 1px;
+  border-width: 0;
   vertical-align: middle;
+  text-align: center;
 }
 
 .kmap table td.empty {

@@ -4,8 +4,8 @@ import TruthTableRow from './TruthTableRow';
 
 let TruthTable = {
   view(vnode){
-    return <div class="truth-table">
-      <table>
+    return <div class="truth-table col">
+      <table class="table">
         <TruthTableHead variables={vnode.attrs.logicFns[0].input.length}/>
         {vnode.attrs.logicFns.map(logicFn =>
         <TruthTableRow logicFn={logicFn}/>
