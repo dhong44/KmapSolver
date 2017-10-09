@@ -42,10 +42,11 @@ table th {
 /* output colouring */
 
 .true {
+  cursor: pointer;
   background-color: #c8e6c9;
 }
 
 .false {
+  cursor: pointer;
   background-color: #ffcdd2;
 }
-
