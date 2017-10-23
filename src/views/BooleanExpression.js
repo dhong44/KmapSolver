@@ -3,6 +3,9 @@ import calculateExpression from '../helpers/OutputExpressionHelper';
 
 export default {
   view(vnode){
-    return <p>Output: { calculateExpression(vnode.attrs.logicFns) }</p>
+    return <div>
+      <p>Sum of Products: { calculateExpression(vnode.attrs.logicFns, "1") }</p>
+      <p>Product of Sums: { calculateExpression(vnode.attrs.logicFns, "0") }</p>
+    </div>
   }
 };

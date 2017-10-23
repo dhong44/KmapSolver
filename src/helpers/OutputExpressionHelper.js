@@ -19,13 +19,30 @@ let findCommon = function(output1, output2){
   }
 };
 
-let numCodeToVars = function(code){
+let numCodeToVarsProducts = function(code){
   let newCode = "";
   for (let i = 0; i < code.length; i ++){
     if (code.charAt(i) === "0"){
       newCode += numToLetter(i) + "'";
     } else if (code.charAt(i) === "1") {
       newCode += numToLetter(i);
+    }
+  }
+  return newCode;
+};
+
+let numCodeToVarsSums = function(code){
+  let newCode = "";
+  for (let i = 0; i < code.length; i ++){
+
+    if ((code.charAt(i) === "1" || code.charAt(i) === "0") && newCode.length > 0){
+      newCode += "+";
+    }
+
+    if (code.charAt(i) === "0"){
+      newCode += numToLetter(i);
+    } else if (code.charAt(i) === "1") {
+      newCode += numToLetter(i) + "'";
     }
   }
   return newCode;
@@ -87,15 +104,22 @@ class Output {
   }
 }
 
-let calculateExpression = function(logicFns){
-  let inputs = logicFns.filter(logicFn => logicFn.output === "1").map((logicFn) =>
+let calculateExpression = function(logicFns, cellValue){
+  let inputs = logicFns.filter(logicFn => logicFn.output === cellValue).map((logicFn) =>
     logicFn.input
   );
 
-  if (inputs.length === 0){
+  if (inputs.length === 0 && cellValue === "1") {
     return "False";
-  } else if (inputs.length === logicFns.length){
+  }
+  else if (inputs.length === 0 && cellValue === "1") {
     return "True";
+  }
+  else if (inputs.length === logicFns.length && cellValue === "1"){
+    return "True";
+  }
+  else if (inputs.length === logicFns.length && cellValue === "0"){
+    return "False";
   } else {
     let outputExpressions = new Set();
     let reduceableOutputs = new Set(inputs);
@@ -129,9 +153,16 @@ let calculateExpression = function(logicFns){
     let codeMap = new Map();
     let outputs = Array.from(outputExpressions).map(expression => new Output(expression, codeMap));
 
-    return outputs.filter(output => !output.duplicateEh())
-      .map(output => numCodeToVars(output.code))
-      .join(" + ");
+    if (cellValue === "1") {
+      return outputs.filter(output => !output.duplicateEh())
+        .map(output => numCodeToVarsProducts(output.code))
+        .join(" + ");
+    }
+    else if (cellValue === "0") {
+      return "(" + outputs.filter(output => !output.duplicateEh())
+        .map(output => numCodeToVarsSums(output.code))
+        .join(")(") + ")";
+    }
   }
 };
 
