@@ -2768,10 +2768,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = {
   view: function view(vnode) {
     return (0, _mithril2.default)(
-      'p',
+      'div',
       null,
-      'Output: ',
-      (0, _OutputExpressionHelper2.default)(vnode.attrs.logicFns)
+      (0, _mithril2.default)(
+        'p',
+        null,
+        'SOP: ',
+        (0, _OutputExpressionHelper2.default)(vnode.attrs.logicFns, "1")
+      ),
+      (0, _mithril2.default)(
+        'p',
+        null,
+        'POS: ',
+        (0, _OutputExpressionHelper2.default)(vnode.attrs.logicFns, "0")
+      )
     );
   }
 };
@@ -2814,13 +2824,30 @@ var findCommon = function findCommon(output1, output2) {
   }
 };
 
-var numCodeToVars = function numCodeToVars(code) {
+var numCodeToVarsProducts = function numCodeToVarsProducts(code) {
   var newCode = "";
   for (var i = 0; i < code.length; i++) {
     if (code.charAt(i) === "0") {
       newCode += (0, _LetterSequenceHelper.numToLetter)(i) + "'";
     } else if (code.charAt(i) === "1") {
       newCode += (0, _LetterSequenceHelper.numToLetter)(i);
+    }
+  }
+  return newCode;
+};
+
+var numCodeToVarsSums = function numCodeToVarsSums(code) {
+  var newCode = "";
+  for (var i = 0; i < code.length; i++) {
+
+    if ((code.charAt(i) === "1" || code.charAt(i) === "0") && newCode.length > 0) {
+      newCode += "+";
+    }
+
+    if (code.charAt(i) === "0") {
+      newCode += (0, _LetterSequenceHelper.numToLetter)(i);
+    } else if (code.charAt(i) === "1") {
+      newCode += (0, _LetterSequenceHelper.numToLetter)(i) + "'";
     }
   }
   return newCode;
@@ -2895,17 +2922,21 @@ var Output = function () {
   return Output;
 }();
 
-var calculateExpression = function calculateExpression(logicFns) {
+var calculateExpression = function calculateExpression(logicFns, cellValue) {
   var inputs = logicFns.filter(function (logicFn) {
-    return logicFn.output === "1";
+    return logicFn.output === cellValue;
   }).map(function (logicFn) {
     return logicFn.input;
   });
 
-  if (inputs.length === 0) {
+  if (inputs.length === 0 && cellValue === "1") {
     return "False";
-  } else if (inputs.length === logicFns.length) {
+  } else if (inputs.length === 0 && cellValue === "1") {
     return "True";
+  } else if (inputs.length === logicFns.length && cellValue === "1") {
+    return "True";
+  } else if (inputs.length === logicFns.length && cellValue === "0") {
+    return "False";
   } else {
     var _ret = function () {
       var outputExpressions = new Set();
@@ -2986,13 +3017,23 @@ var calculateExpression = function calculateExpression(logicFns) {
         return new Output(expression, codeMap);
       });
 
-      return {
-        v: outputs.filter(function (output) {
-          return !output.duplicateEh();
-        }).map(function (output) {
-          return numCodeToVars(output.code);
-        }).join(" + ")
-      };
+      if (cellValue === "1") {
+        return {
+          v: outputs.filter(function (output) {
+            return !output.duplicateEh();
+          }).map(function (output) {
+            return numCodeToVarsProducts(output.code);
+          }).join(" + ")
+        };
+      } else if (cellValue === "0") {
+        return {
+          v: "(" + outputs.filter(function (output) {
+            return !output.duplicateEh();
+          }).map(function (output) {
+            return numCodeToVarsSums(output.code);
+          }).join(")(") + ")"
+        };
+      }
     }();
 
     if ((typeof _ret === "undefined" ? "undefined" : _typeof(_ret)) === "object") return _ret.v;
@@ -3136,7 +3177,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "/* spacing */\r\n\r\n.columns {\r\n  display: flex;\r\n  justify-content: space-around;\r\n}\r\n\r\n/* table formatting */\r\n\r\ntable {\r\n  border-collapse: collapse;\r\n}\r\n\r\ntable td,\r\ntable th {\r\n  padding: 0.25rem 0.25rem 0.25rem;\r\n}\r\n\r\n.truth-table table td,\r\n.truth-table table th {\r\n  text-align: center;\r\n  border: 0 solid #ccc;\r\n  border-bottom-width: 1px;\r\n}\r\n\r\n.truth-table table tr:last-child td,\r\n.table table tr:last-child th {\r\n  border-bottom-width: 0;\r\n}\r\n\r\n.kmap table td,\r\n.kmap table th {\r\n  border-width: 0;\r\n  vertical-align: middle;\r\n  text-align: center;\r\n}\r\n\r\n.kmap table td.empty {\r\n  border-width: 0;\r\n}\r\n\r\n/* output colouring */\r\n\r\n.true {\r\n  background-color: #c8e6c9;\r\n}\r\n\r\n.false {\r\n  background-color: #ffcdd2;\r\n}\r\n\r\n", ""]);
+exports.push([module.i, "/* spacing */\r\n\r\n.columns {\r\n  display: flex;\r\n  justify-content: space-around;\r\n}\r\n\r\n/* table formatting */\r\n\r\ntable {\r\n  border-collapse: collapse;\r\n}\r\n\r\ntable td,\r\ntable th {\r\n  padding: 0.25rem 0.25rem 0.25rem;\r\n}\r\n\r\n.truth-table table td,\r\n.truth-table table th {\r\n  text-align: center;\r\n  border: 0 solid #ccc;\r\n  border-bottom-width: 1px;\r\n}\r\n\r\n.truth-table table tr:last-child td,\r\n.table table tr:last-child th {\r\n  border-bottom-width: 0;\r\n}\r\n\r\n.kmap table td,\r\n.kmap table th {\r\n  border-width: 0;\r\n  vertical-align: middle;\r\n  text-align: center;\r\n}\r\n\r\n.kmap table td.empty {\r\n  border-width: 0;\r\n}\r\n\r\n/* output colouring */\r\n\r\n.true {\r\n  cursor: pointer;\r\n  background-color: #c8e6c9;\r\n}\r\n\r\n.false {\r\n  cursor: pointer;\r\n  background-color: #ffcdd2;\r\n}\r\n", ""]);
 
 // exports
 
